@@ -4,7 +4,7 @@ lightning-pose_utils provides utilities for training, analyzing, and deploying p
 
 ## Installation
 
-First you'll have to install the lightning-pose package, which contains the base modeling code - follow the directions lightning pose([https://github.com/themattinthehatt/daart](https://github.com/danbider/lightning-pose/tree/main)). Then, in the command line, navigate to where you'd like to install the lightning-pose_utils package and move into that directory:
+First you'll have to install the lightning-pose package, which contains the base modeling code - follow the directions lightning pose([here](https://github.com/danbider/lightning-pose/tree/main)). Then, in the command line, navigate to where you'd like to install the lightning-pose_utils package and move into that directory:
 
 ```bash
 git clone https://github.com/tommyly201/lightning-pose_utils
