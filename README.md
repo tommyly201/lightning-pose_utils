@@ -1,51 +1,86 @@
 # lightning-pose_utils: Lightning Pose Utilities
 
-YourPackage provides advanced utilities for training, analyzing, and deploying pose estimation models with a focus on efficiency and ease of use.
+lightning-pose_utils provides utilities for training, analyzing, and deploying pose estimation models with a focus on efficiency and ease of use.
 
 ## Installation
 
-Ensure you have Python 3.8+ installed. Begin by cloning the YourPackage repository and installing its dependencies:
+First you'll have to install the lightning-pose package, which contains the base modeling code - follow the directions ([https://github.com/themattinthehatt/daart](https://github.com/danbider/lightning-pose/tree/main)). Then, in the command line, navigate to where you'd like to install the lightning-pose_utils package and move into that directory:
 
 ```bash
-git clone https://github.com/yourusername/YourPackage
-cd YourPackage
+git clone https://github.com/tommyly201/lightning-pose_utils
+cd lightning-pose_utils
 pip install -r requirements.txt
 ```
 
-## Configuration
+Next, active the `lightning-pose` conda environment and locally install the `lightning-pose_utils` package.
 
-Create a `config.yaml` in the YourPackage directory to specify model configurations, training parameters, and dataset paths:
-
-```yaml
-model_config: config/model_config.yaml
-training_config: config/training_config.yaml
-data_config: config/data_config.yaml
+```
+$: conda activate lightning-pose
+(lightning-pose) $: pip install -r requirements.txt
+(lightning-pose) $: pip install -e .
 ```
 
-Adjust the `.yaml` files according to your dataset and model requirements.
+## Set paths
 
-## Training Models
+To set user-specific paths that the scripts and notebooks can read from, create a file named
+`daart_utils/daart_utils/paths.py` that looks like the following:
 
-To train a model, run the `train_model.py` script with the desired configurations:
+```python
 
-```bash
-python scripts/train_model.py --config config.yaml
+# where daart config files are stored, i.e. `data.yaml`, `model.yaml`, and `train.yaml`
+config_path = '/path/to/configs'
+
+# data path
+# ---------
+# for example, hand labels for a particular session are located at
+#
+# `data_path/<dataset>/hand-labels/<session_id>_labels.csv`
+#
+# where <dataset> is `ibl`, `fly`, etc.
+data_path = '/path/to/data'
+
+# results path
+# ------------
+# for example, with the test-tube directory name 'grid-search' and a dtcn model,
+# model info will be stored in the directory
+#
+# `base_path/<dataset>/<session-id>/dtcn/grid-search/version_X`
+#
+# where <dataset> is `ibl`, `fly`, etc.
+results_path = '/path/to/results'
+
 ```
 
-## Evaluating Models
+The scripts and notebooks will automatically replace the paths in the config files with the paths
+defined in this `paths.py` file.
 
-For model evaluation, use the `evaluate_model.py` script, specifying the model checkpoint:
 
-```bash
-python scripts/evaluate_model.py --checkpoint path/to/checkpoint.ckpt
+## Fit models
+
+This package uses [test-tube](https://williamfalcon.github.io/test-tube/) for hyperparameter 
+searching and model fitting. The script `scripts/fit_models_loop.py` will fit one or more models 
+based on three yaml configuration files: one describing the data, one describing the model, and one 
+describing the training procedure.
+ 
+First copy/paste templates of the three config files from the `daart` directory into the location
+defined by `config_path` above (`data.yaml`, `model.yaml`, and `train.yaml`). The default fitting 
+script will expect dataset-specific data configs, so you should make copies of the above
+files named `data_fly.yaml`, for example.
+
+Next, configure the models you want to fit in the yaml files. The provided script will 
+automatically hyperparameter search over lists, so if you set `lambda_weak: [0, 1]` in the model yaml
+then two models will be fit; if you additionally set `lambda_pred: [0, 1]`, then all four model
+combinations will be fit.
+
+Once you have set the desired parameters in the config files, you can run the fitting script from 
+the command line by providing a dataset and a model type; for example, to fit a dTCN model on fly 
+data, run the following:
+
+```
+(daart) $: python scripts/fit_models_loop.py --dataset fly --fit_dtcn
 ```
 
-## Customization and Extension
+See the script for more details on options.
 
-YourPackage is designed for extensibility. Add custom model architectures or data processors by extending the base classes and integrating them into the existing workflow.
-
-For detailed documentation on extending YourPackage, see [Extending YourPackage](docs/extending.md).
-
----
-
-This template provides a foundational structure for your README.md, adaptable to your project's specifics. Replace placeholders with your actual package details, configurations, and usage examples to guide users through installing, using, and extending your package.
+You can then explore the results with the jupyter notebook 
+`notebooks/evaluation_across_models.ipynb`
