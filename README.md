@@ -23,21 +23,19 @@ $: conda activate lightning-pose
 ## Set paths
 
 To set user-specific paths that the scripts and notebooks can read from, create a file named
-`daart_utils/daart_utils/paths.py` that looks like the following:
+`lightning-pose_utils/lightning-pose/paths.py` that looks like the following:
 
 ```python
 
-# where daart config files are stored, i.e. `data.yaml`, `model.yaml`, and `train.yaml`
+# where lightning-pose config files are stored, i.e. `data.yaml`, `model.yaml`, and `train.yaml`
 config_path = '/path/to/configs'
 
 # data path
 # ---------
 # for example, hand labels for a particular session are located at
 #
-# `data_path/<dataset>/hand-labels/<session_id>_labels.csv`
+# `data_path/output/<model_run_date>/<model_run_timestamp>/predictions_new_pixel_error.csv`
 #
-# where <dataset> is `ibl`, `fly`, etc.
-data_path = '/path/to/data'
 
 # results path
 # ------------
