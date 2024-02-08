@@ -10,7 +10,7 @@
 ## Installation
 
 ```bash
-git clone [https://github.com/tommyly201/lightningpose_utils](https://github.com/tommyly201/lightningpose_utils)
+git clone https://github.com/tommyly201/lightningpose_utils
 cd lightningpose_utils
 pip install -r requirements.txt 
 pip install -e . 
