@@ -1,41 +1,62 @@
-# lightning-pose_utils: Lightning Pose Utilities
+# lightningpose_utils: Utilities for the Lightning Pose Framework
 
-lightning-pose_utils provides utilities for training, analyzing, and deploying pose estimation models with a focus on efficiency and ease of use.
+**Purpose:** This package provides tools to streamline data preparation, model customization, and visualization for projects using the Lightning Pose framework.
+
+## Prerequisites
+
+* **lightning-pose:** Please follow the installation instructions on the Lightning Pose repository: [https://github.com/Lightning-Pose/Lightning-Pose](https://github.com/Lightning-Pose/Lightning-Pose)
+* **Python 3.7+:** (Or adjust the Python version requirement if needed)
 
 ## Installation
 
-First you'll have to install the lightning-pose package, which contains the base modeling code - follow the directions lightning pose([here](https://github.com/danbider/lightning-pose/tree/main)). Then, in the command line, navigate to where you'd like to install the lightning-pose_utils package and move into that directory:
-
 ```bash
-git clone https://github.com/tommyly201/lightning-pose_utils
-cd lightning-pose_utils
-pip install -r requirements.txt
-```
+git clone [https://github.com/your-username/lightningpose_utils](https://github.com/your-username/lightningpose_utils)  # Replace with your repo URL
+cd lightningpose_utils
+pip install -r requirements.txt 
+pip install -e . 
 
-Next, active the `lightning-pose` conda environment and locally install the `lightning-pose_utils` package.
 
-```
-$: conda activate lightning-pose
-(lightning-pose) $: pip install -r requirements.txt
-(lightning-pose) $: pip install -e .
-```
+## Overview of Modules
 
-## Set paths
+* **data_utils.py:** Contains data preprocessing and augmentation helpers specifically designed for Lightning Pose input formats.
+* **model_utils.py:** Provides tools for easily adjusting Lightning Pose models, such as adding layers, modifying pre-trained weights, or creating custom loss functions.
+* **visualization.py:** Includes functions for overlaying predicted poses on images or videos, as well as tools for qualitative error analysis.
 
-To set user-specific paths that the scripts and notebooks can read from, create a file named
-`lightning-pose_utils/lightning-pose/paths.py` that looks like the following:
+## Basic Usage Example
 
-```python
+python
+from lightningpose_utils import data_utils, visualization
+import lightning-pose as lp
 
-# where lightning-pose config files are stored, i.e. `data.yaml`, `model.yaml`, and `train.yaml`
-config_path = '/path/to/configs'
+# Load a sample image (adjust according to your image loading methods)
+image = ... 
 
-# data path
-# ---------
-# for example, hand labels for a particular session are located at
-#
-# `data_path/output/<model_run_date>/<model_run_timestamp>/predictions_new_pixel_error.csv`
-#
+# Apply preprocessing suitable for Lightning Pose models
+normalized_image = data_utils.normalize_for_lightningpose(image)
 
-```
+# Load a Lightning Pose model 
+model = lp.load_model(...)
 
+# Make predictions
+predictions = model.predict(normalized_image)
+
+# Visualize results
+visualization.overlay_pose(image, predictions[0]) 
+
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Contributing 
+
+We welcome contributions! If you'd like to get involved, please feel free to [open an issue](https://docs.github.com/en/issues/tracking-your-work-with-issues/about-issues) or [submit a pull request](https://docs.github.com/articles/creating-a-pull-request). 
+
+
+**Remember**
+
+* **Replace placeholders:**  Update the repository URL (`https://github.com/your-username/lightningpose_utils` ) with your actual GitHub repository link.
+* **Specific Functions:**   As you populate your `data_utils.py`, `model_utils.py`, and `visualization.py` files, elaborate on the specifics of your available functions within the module descriptions.
+* **Visuals:** You might even  consider adding images or GIFs to demonstrate your visualization outputs within the README.
+
+**Let me know if you'd like to start outlining a function for one of your utility modules. I'm ready to assist!** 
