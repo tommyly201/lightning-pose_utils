@@ -10,7 +10,7 @@
 ## Installation
 
 ```bash
-git clone [https://github.com/your-username/lightningpose_utils](https://github.com/your-username/lightningpose_utils)  # Replace with your repo URL
+git clone [https://github.com/tommyly201/lightningpose_utils](https://github.com/tommyly201/lightningpose_utils)
 cd lightningpose_utils
 pip install -r requirements.txt 
 pip install -e . 
@@ -23,7 +23,7 @@ pip install -e .
 * **visualization.py:** Includes functions for overlaying predicted poses on images or videos, as well as tools for qualitative error analysis.
 
 ## Basic Usage Example
-
+```bash
 python
 from lightningpose_utils import data_utils, visualization
 import lightning-pose as lp
@@ -42,7 +42,7 @@ predictions = model.predict(normalized_image)
 
 # Visualize results
 visualization.overlay_pose(image, predictions[0]) 
-
+```
 
 ## License
 
@@ -52,11 +52,3 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 We welcome contributions! If you'd like to get involved, please feel free to [open an issue](https://docs.github.com/en/issues/tracking-your-work-with-issues/about-issues) or [submit a pull request](https://docs.github.com/articles/creating-a-pull-request). 
 
-
-**Remember**
-
-* **Replace placeholders:**  Update the repository URL (`https://github.com/your-username/lightningpose_utils` ) with your actual GitHub repository link.
-* **Specific Functions:**   As you populate your `data_utils.py`, `model_utils.py`, and `visualization.py` files, elaborate on the specifics of your available functions within the module descriptions.
-* **Visuals:** You might even  consider adding images or GIFs to demonstrate your visualization outputs within the README.
-
-**Let me know if you'd like to start outlining a function for one of your utility modules. I'm ready to assist!** 
