@@ -7,9 +7,7 @@ setup(
     author='Tommy Ly',  # Update author info
     author_email='tommyly201@gmail.com', 
     url='https://github.com/tommyly201/lightningpose_utils',  # Your repo URL
-    install_requires=[
-        'lightning-pose',  # Your main dependency
-        # Add others like 'numpy', 'opencv-python' when needed
-    ],
+    # install_requires=[
+    #     'lightning-pose',  # Your main dependency],
     packages=find_packages(),  # Automatically detects your package structure
 )
