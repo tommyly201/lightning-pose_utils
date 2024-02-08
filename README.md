@@ -4,7 +4,7 @@
 
 ## Prerequisites
 
-* **lightning-pose:** Please follow the installation instructions on the Lightning Pose repository: (https://github.com/Lightning-Pose/Lightning-Pose)](https://github.com/danbider/lightning-pose/tree/main)
+* **lightning-pose:** Please follow the installation instructions on the Lightning Pose repository: (https://github.com/danbider/lightning-pose/tree/main)
 * **Python 3.7+:** (Or adjust the Python version requirement if needed)
 
 ## Installation
